@@ -22,7 +22,7 @@ $row= mysqli_fetch_assoc($result);
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nama Material</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Material" name="nama" value="<?= $row['nama']; ?>">
+					<input type="text" class="form-control" name="nama" placeholder="Masukan Material" value="<?= $row['nama']; ?>" required>
 				</div>
 			</div>
 		</div>
@@ -31,13 +31,13 @@ $row= mysqli_fetch_assoc($result);
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Stok</label>
-					<input type="number" class="form-control" id="exampleInputEmail1"  name="stok" value="<?= $row['qty']; ?>">
+					<input type="number" class="form-control" name="stok" value="<?= $row['qty']; ?>" min="1" required>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Satuan</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Contoh : Kg" name="satuan" value="<?= $row['satuan']; ?>">
+					<input type="text" class="form-control" name="satuan" placeholder="Contoh: Kg/Gram" value="<?= $row['satuan']; ?>" required>
 					<p class="help-block">Hanya Masukkan Satuan saja : Kg atau gram</p>
 				</div>
 			</div>
@@ -47,7 +47,7 @@ $row= mysqli_fetch_assoc($result);
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Harga</label>
-					<input type="number" class="form-control" id="exampleInputEmail1"  name="harga" placeholder="Contoh : 1000" value="<?= $row['harga']; ?>">
+					<input type="number" class="form-control" name="harga" placeholder="Contoh: 1000" value="<?= $row['harga']; ?>" min="1" required>
 					<p class="help-block">Harga termasuk harga per kg atau per 	gram</p>
 				</div>
 			</div>

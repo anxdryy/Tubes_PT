@@ -36,7 +36,7 @@ include 'header.php';
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Nama Material</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Material" name="nama">
+					<input type="text" name="nama" class="form-control" placeholder="Masukkan Material" required>
 				</div>
 			</div>
 		</div>
@@ -45,13 +45,13 @@ include 'header.php';
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Stok</label>
-					<input type="number" class="form-control" id="exampleInputEmail1"  name="stok" placeholder="contoh 2 atau 0.4" min="1">
+					<input type="number" name="stok" class="form-control" min="1" placeholder="contoh 2 atau 0.4" required>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Satuan</label>
-					<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Contoh : Kg atau gram" name="satuan">
+					<input type="text" name="satuan" class="form-control" placeholder="Contoh : Kg atau gram" required>
 						<p class="help-block">Hanya Masukkan Satuan saja : Kg atau gram</p>
 				</div>
 			</div>
@@ -61,7 +61,7 @@ include 'header.php';
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Harga</label>
-					<input type="number" class="form-control" id="exampleInputEmail1"  name="harga" placeholder="Contoh : 1000" min="1">
+					<input type="number" name="harga" class="form-control" min="1" placeholder="Contoh : 1000" required>
 					<p class="help-block">Harga termasuk harga per kg atau per 	gram</p>
 				</div>
 			</div>

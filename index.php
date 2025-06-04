@@ -386,12 +386,12 @@ include 'header.php';
                     </button>
 				</div>
 			</div>
-			<div class="col-lg-5 col-md-6 order-md-2">
+			<!-- <div class="col-lg-5 col-md-6 order-md-2">
 				<img data-aos="zoom-in" data-aos-offset="100" data-aos-delay="200" data-aos-duration="800"
 					data-aos-easing="ease-in-out" data-aos-mirror="false" data-aos-once="true"
 					data-aos-anchor-placement="top-center" src="image/home/foto.png" width="115%"
 					class="float-lg-end mx-auto d-block" alt="Responsive image">
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
