@@ -28,10 +28,10 @@ include 'header.php';
 
     /* Hero Section Enhancement */
     #hero {
-        background: linear-gradient(135deg, #FFD700 0%, #FF8D00 50%, #FF6B35 100%);
+        /* background: linear-gradient(135deg, #FFD700 0%, #FF8D00 50%, #FF6B35 100%); */
         position: relative;
         overflow: hidden;
-        min-height: 100vh;
+        min-height: 30vh;
     }
 
     #hero::before {
@@ -51,7 +51,7 @@ include 'header.php';
     }
 
     #judul h2, #judul h1 {
-        color: white;
+        color: #FF8D00;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         font-family: 'Poppins', sans-serif;
     }
@@ -70,9 +70,9 @@ include 'header.php';
     }
 
     #hero p {
-        color: rgba(255,255,255,0.9) !important;
+        color: rgba(13, 13, 13, 0.9) !important;
         font-size: 1.1rem;
-        background: rgba(255,255,255,0.1);
+        background: rgba(180, 172, 159, 0.1);
         padding: 20px;
         border-radius: 15px;
         backdrop-filter: blur(10px);
@@ -83,7 +83,7 @@ include 'header.php';
     #hero #more {
         background: rgba(255,255,255,0.15) !important;
         border-left: 4px solid #FFE55C;
-        color: rgba(255,255,255,0.9) !important; /* Pastikan teks terlihat */
+        color: rgba(0, 0, 0, 0.9) !important; /* Pastikan teks terlihat */
         display: none; /* Hidden by default */
         opacity: 1; /* Pastikan opacity 1 */
     }
@@ -295,7 +295,7 @@ include 'header.php';
 
     /* Stats Section */
     .stats-section {
-        background: var(--gradient-1);
+        background: linear-gradient(135deg, #FFD700 0%, #FF8D00 50%, #FF6B35 100%);
         padding: 80px 0;
         margin: 80px 0;
         border-radius: 0;
