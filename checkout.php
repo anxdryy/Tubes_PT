@@ -15,7 +15,7 @@ $rows = mysqli_fetch_assoc($cs);
 					<th>No</th>
 					<th>Nama</th>
 					<th>Harga</th>
-					<th>Qty</th>
+					<th>Qty</th>-
 					<th>Sub Total</th>
 				</tr>
 				<?php
