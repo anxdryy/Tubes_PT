@@ -71,80 +71,72 @@ if ($size_gambar > 1000000) {
     die;
 }
 
-$namaGambarBaru = uniqid() . "." . $ekstensiGambarValid;
+// SOLUSI BARU: Konversi gambar ke Base64
+$imageData = file_get_contents($tmp_file);
+$base64Image = base64_encode($imageData);
+$imageSrc = 'data:' . $type . ';base64,' . $base64Image;
 
-// Upload gambar
-if (move_uploaded_file($tmp_file, "../../image/produk/" . $namaGambarBaru)) {
+// Escape string untuk mencegah SQL injection
+$kode = mysqli_real_escape_string($conn, $kode);
+$nm_produk = mysqli_real_escape_string($conn, $nm_produk);
+$desk = mysqli_real_escape_string($conn, $desk);
+$harga = (int)$harga;
+$imageSrc = mysqli_real_escape_string($conn, $imageSrc);
 
-    // Escape string untuk mencegah SQL injection
-    $kode = mysqli_real_escape_string($conn, $kode);
-    $nm_produk = mysqli_real_escape_string($conn, $nm_produk);
-    $desk = mysqli_real_escape_string($conn, $desk);
-    $harga = (int)$harga; // Cast ke integer untuk keamanan
-    
-    // Insert produk dengan semua kolom yang diperlukan
-    $query_produk = "INSERT INTO produk (kode_produk, nama, image, deskripsi, harga) 
-                     VALUES ('$kode', '$nm_produk', '$namaGambarBaru', '$desk', $harga)";
-    
-    $result = mysqli_query($conn, $query_produk);
-    
-    if (!$result) {
-        echo "
-        <script>
-        alert('Error menambahkan produk: " . mysqli_error($conn) . "');
-        window.location = '../tm_produk.php';
-        </script>
-        ";
-        exit;
-    }
+// Insert produk dengan gambar Base64
+$query_produk = "INSERT INTO produk (kode_produk, nama, image, deskripsi, harga) 
+                 VALUES ('$kode', '$nm_produk', '$imageSrc', '$desk', $harga)";
 
-    // Insert BOM jika berhasil menambahkan produk
-    if (is_array($kd_material) && is_array($keb)) {
-        $filter = array_filter($kd_material);
-        $jml = count($filter) - 1;
-        $no = 0;
+$result = mysqli_query($conn, $query_produk);
 
-        while ($no <= $jml) {
-            if (!empty($kd_material[$no]) && !empty($keb[$no])) {
-                // Escape data BOM
-                $material_code = mysqli_real_escape_string($conn, $kd_material[$no]);
-                $kebutuhan = mysqli_real_escape_string($conn, $keb[$no]);
-                
-                // Get material name from inventory table
-                $material_query = mysqli_query($conn, "SELECT nama FROM inventory WHERE kode_bk = '$material_code'");
-                $material_data = mysqli_fetch_assoc($material_query);
-                $material_name = $material_data ? $material_data['nama'] : '';
-                
-                $bom_query = "INSERT INTO bom_produk (kode_bom, kode_bk, kode_produk, nama_produk, kebutuhan) 
-                             VALUES ('$format', '$material_code', '$kode', '$nm_produk', '$kebutuhan')";
-                
-                $bom_result = mysqli_query($conn, $bom_query);
-                
-                if (!$bom_result) {
-                    echo "
-                    <script>
-                    alert('Error BOM pada material $no: " . mysqli_error($conn) . "');
-                    </script>
-                    ";
-                }
-            }
-            $no++;
-        }
-    }
-
+if (!$result) {
     echo "
     <script>
-    alert('PRODUK BERHASIL DITAMBAHKAN');
-    window.location = '../m_produk.php';
-    </script>
-    ";
-
-} else {
-    echo "
-    <script>
-    alert('GAGAL MENGUPLOAD GAMBAR');
+    alert('Error menambahkan produk: " . mysqli_error($conn) . "');
     window.location = '../tm_produk.php';
     </script>
     ";
+    exit;
 }
+
+// Insert BOM jika berhasil menambahkan produk
+if (is_array($kd_material) && is_array($keb)) {
+    $filter = array_filter($kd_material);
+    $jml = count($filter) - 1;
+    $no = 0;
+
+    while ($no <= $jml) {
+        if (!empty($kd_material[$no]) && !empty($keb[$no])) {
+            // Escape data BOM
+            $material_code = mysqli_real_escape_string($conn, $kd_material[$no]);
+            $kebutuhan = mysqli_real_escape_string($conn, $keb[$no]);
+            
+            // Get material name from inventory table
+            $material_query = mysqli_query($conn, "SELECT nama FROM inventory WHERE kode_bk = '$material_code'");
+            $material_data = mysqli_fetch_assoc($material_query);
+            $material_name = $material_data ? $material_data['nama'] : '';
+            
+            $bom_query = "INSERT INTO bom_produk (kode_bom, kode_bk, kode_produk, nama_produk, kebutuhan) 
+                         VALUES ('$format', '$material_code', '$kode', '$nm_produk', '$kebutuhan')";
+            
+            $bom_result = mysqli_query($conn, $bom_query);
+            
+            if (!$bom_result) {
+                echo "
+                <script>
+                alert('Error BOM pada material $no: " . mysqli_error($conn) . "');
+                </script>
+                ";
+            }
+        }
+        $no++;
+    }
+}
+
+echo "
+<script>
+alert('PRODUK BERHASIL DITAMBAHKAN');
+window.location = '../m_produk.php';
+</script>
+";
 ?>
