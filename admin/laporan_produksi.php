@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
 					<tr>
 						<td><input type="hidden" name="date1" class="form-control" value="<?= $date1; ?>"></td>
 						<td><input type="hidden" name="date2" class="form-control" value="<?= $date2; ?>"></td>
-						<td><button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-save-file"></i> Export to Excel</button></td>
+						<!-- <td><button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-save-file"></i> Export to Excel</button></td> -->
 						<td> &nbsp;</td>
 						<td><a href="" onclick="window.print()" class="btn btn-default"><i class="glyphicon glyphicon-print"></i> Cetak</a></td>
 					</tr>
