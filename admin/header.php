@@ -68,13 +68,13 @@ if(!isset($_SESSION['admin'])){
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
+					<!-- <li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i> Pemeliharaan <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="../DATABASE/backup.php">Backup Database</a></li>
 							<li><a href="../DATABASE/retrieve.php">Retrieve Database</a></li>
 						</ul>
-					</li>
+					</li> -->
 
 
 					<li class="dropdown">
